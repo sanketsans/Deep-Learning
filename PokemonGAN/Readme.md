@@ -1,6 +1,7 @@
 ## Generating Pokemons using DCGAN
 
 Dataset used can be found here : ![Pokemon Images](https://www.kaggle.com/kvpratama/pokemon-images-dataset)
+The dataset images are in PNG. I converted them to jpg. 
 
 Paper refered for the algorithm and hyper-parameter tuning - ![Paper](https://arxiv.org/pdf/1511.06434.pdf)
 
@@ -33,6 +34,52 @@ For the generator model,
   ![Architecture](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/Images/conv_generator.png)
   
   
+**My architecture for updated GAN**:
+```
+Discriminator(
+  (conv1): Sequential(
+    (0): Conv2d(3, 32, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+  )
+  (conv2): Sequential(
+    (0): Conv2d(32, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (conv3): Sequential(
+    (0): Conv2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (conv4): Sequential(
+    (0): Conv2d(128, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (fc): Linear(in_features=4096, out_features=1, bias=True)
+)
+
+Generator(
+  (fc): Linear(in_features=100, out_features=8192, bias=True)
+  (deconv1): Sequential(
+    (0): ConvTranspose2d(512, 256, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (deconv2): Sequential(
+    (0): ConvTranspose2d(256, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (deconv3): Sequential(
+    (0): ConvTranspose2d(128, 64, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (deconv4): Sequential(
+    (0): ConvTranspose2d(64, 32, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1), bias=False)
+    (1): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  )
+  (deconv5): Sequential(
+    (0): ConvTranspose2d(32, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  )
+)
+```
+  
+  
 ## Discriminator and Generator Losses
   
 ### Discriminator Losses
@@ -62,4 +109,10 @@ Training will involve alternating between training the discriminator and the gen
 1. Generate fake images
 2. Compute the discriminator loss on fake images, using **flipped** labels!
 3. Perform backpropagation + an optimization step to update the generator's weights
+
+I trained the GAN for 500 epochs and some of the images generated are: 
+
+![Image1](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/outfile_1.jpg)
+![Image2](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/outfile_3.jpg)
+![Image3](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/outfile_8.jpg)
 
