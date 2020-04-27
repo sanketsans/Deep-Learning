@@ -3,6 +3,43 @@
 Dataset used can be found here : ![Pokemon Images](https://www.kaggle.com/kvpratama/pokemon-images-dataset)
 The dataset images are in PNG. I converted them to jpg. 
 
+**To directly upload a dataset from kaggle to drive and use in colab** 
+
+Go to https://www.kaggle.com/ **-> My Account -> Create New API token** - It will automatically download a json file. 
+In colab, 
+  - **Upload the token file**
+  ```
+  from google.colab import files
+  files.upload()
+  ```
+ 
+  - **Connect the pathway**
+  ```
+  !pip install -q kaggle
+  !mkdir -p ~/.kaggle
+  !cp kaggle.json ~/.kaggle/
+  !ls ~/.kaggle
+  !chmod 600 /root/.kaggle/kaggle.json\
+  ```
+  
+  - **List the datasets**
+  ```
+  !kaggle datasets list -s 'simpsons-faces'
+  ```
+  
+  - **Mount your drive**
+  ```
+  from google.colab import drive
+  import os
+  drive.mount('/content/gdrive')
+  ```
+  
+  - **Download dataset to a folder in your drive**
+  ```
+  !kaggle datasets download 'kostastokis/simpsons-faces' -p /content/gdrive/My\ Drive/Kaggle/simpson/
+  ```
+
+
 Paper refered for the algorithm and hyper-parameter tuning - ![Paper](https://arxiv.org/pdf/1511.06434.pdf)
 
 ## Model 
