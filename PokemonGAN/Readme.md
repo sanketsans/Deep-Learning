@@ -157,3 +157,6 @@ I trained the GAN for 500 epochs and some of the images generated are:
 ![Image6](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_53.jpg)
 ![Image7](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_94.jpg)
 
+**Generation process:**
+
+[![https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_169.jpg](http://img.youtube.com/vi/HWHVh9orOQk/0.jpg)](http://www.youtube.com/watch?v=HWHVh9orOQk "Generating Fake pokemon ")
