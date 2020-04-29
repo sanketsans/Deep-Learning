@@ -1,7 +1,7 @@
 ## Generating Pokemons using DCGAN
 
-Dataset used can be found here : ![Pokemon Images](https://www.kaggle.com/kvpratama/pokemon-images-dataset)
-The dataset images are in PNG. I converted them to jpg. 
+Dataset used can be found here : ![Pokemon Images](https://www.kaggle.com/djilax/pkmn-image-dataset).
+I converted all the images to 128x128 which the final generated image size as well. 
 
 **To directly upload a dataset from kaggle to drive and use in colab** 
 
