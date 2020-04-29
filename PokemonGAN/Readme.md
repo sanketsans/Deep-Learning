@@ -149,7 +149,11 @@ Training will involve alternating between training the discriminator and the gen
 
 I trained the GAN for 500 epochs and some of the images generated are: 
 
-![Image1](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/outfile_1.jpg)
-![Image2](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/outfile_3.jpg)
-![Image3](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/outfile_8.jpg)
+![Image1](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_123.jpg)
+![Image2](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_148.jpg)
+![Image3](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_166.jpg)
+![Image4](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_168.jpg)
+![Image5](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_169.jpg)
+![Image6](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_53.jpg)
+![Image7](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/generated%20images/image_94.jpg)
 
