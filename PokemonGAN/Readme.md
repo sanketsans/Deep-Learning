@@ -70,8 +70,31 @@ For the generator model,
   
   ![Architecture](https://github.com/sanketsans/Deep-Learning/blob/master/PokemonGAN/Images/conv_generator.png)
   
-  
-**My architecture for updated GAN**:
+**Noise vector $z$**
+
+The noise vector $z$ has the important role of making sure the images generated from the same class $y$ don't all look the same—think of it as a random seed. You generate it randomly, usually by sampling random numbers either between 0 and 1 uniformly, or from the normal distribution, which you can denote $z$ ~ $N(0, 1)$. The zero means the normal distribution has a mean of zero, and the 1 means that the normal distribution has a variance of 1. 
+
+In reality, $z$ is usually larger than just 1 value to allow for more combinations of what $z$ could be. There's no special number that determines what works, but 100 is standard. Some researchers might use a power of 2, like 128 or 512, but again, nothing special about the number itself, just that it's large enough to contain a lot of possibilities. As a result, you would sample $z$ from that many different dimensions (constituting multiple normal distributions).
+
+*Fun Fact: this is also called a spherical normal and denoted $z$ ~ $N(0, I)$ where the $I$ represents the identity matrix and means the variance is 1 in all dimensions.*
+
+**Truncation trick**
+
+So now that you're a bit familiar with noise vectors, here's another cool concept that people use to tune their outputs. It's called the truncation trick. I like to think of the truncation trick as a way of trading off fidelity (quality) and diversity in the samples. It works like this: when you randomly sample your noise vector $z$, you can choose to keep that random $z$ or you can sample another one. 
+
+Why would you want to sample another one? 
+
+Well, since I'm sampling $z$ from a normal distribution, my model will see more of those $z$ values within a standard deviation from the mean than those at the tails of the distribution—and this happens during training. This means that while the model is training, it's likely to be familiar with certain noise vectors and as a result model those areas coming from familiar noise vector regions. In these areas, my model will likely have much more realistic results, but nothing too funky, it's not taking as many risks in those regions mapped from those familiar noise vectors. This is the trade-off between fidelity (realistic, high quality images) and diversity (variety in images). 
+
+<img src="https://build.openmodelica.org/Documentation/Modelica%203.2.3/Resources/Images/Math/Distributions/TruncatedNormal.density.png" alt="truncated normal distribution" width="400"/>
+
+> *Image Credit: Modelica*
+
+
+What the truncation trick does is resamples the noise vector $z$ until it falls within some bounds of the normal distribution. In fact, it samples $z$ from a truncated normal distribution where the tails are cut off at different values (red line in graph is truncated normal, blue is original). You can tune these values and thus tune fidelity/diversity. Recall that having a lot of fidelity is not always the goal—one failure mode of that is that you get one really real image but nothing else (no diversity), and that's not very interesting or successful from a model that's supposed to model the realm of all possible human faces or that of all possible coconuts—including that of a cat pouncing after a flying coconut (but with extremely low probability).
+
+
+## My architecture for updated GAN:
 ```
 Discriminator(
   (conv1): Sequential(
